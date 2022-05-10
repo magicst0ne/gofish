@@ -8,8 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/magicst0ne/gofish/redfish"
-	"github.com/stmcginnis/gofish/common"
-	"github.com/stmcginnis/gofish/swordfish"
+	"github.com/magicst0ne/gofish/common"
+	"github.com/magicst0ne/gofish/swordfish"
 )
 
 // Expand shall contain information about the support of the $expand query
