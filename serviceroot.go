@@ -6,10 +6,10 @@ package gofish
 
 import (
 	"encoding/json"
-
-	"github.com/magicst0ne/gofish/common"
+	"fmt"
 	"github.com/magicst0ne/gofish/redfish"
-	"github.com/magicst0ne/gofish/swordfish"
+	"github.com/stmcginnis/gofish/common"
+	"github.com/stmcginnis/gofish/swordfish"
 )
 
 // Expand shall contain information about the support of the $expand query
@@ -209,6 +209,9 @@ func (serviceroot *Service) UnmarshalJSON(b []byte) error {
 	serviceroot.updateService = string(t.UpdateService)
 	serviceroot.Oem = t.Oem
 
+	if serviceroot.sessions == "" {
+		serviceroot.sessions = fmt.Sprintf("%s/sessions", serviceroot.sessionService)
+	}
 	return nil
 }
 

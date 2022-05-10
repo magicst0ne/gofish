@@ -515,9 +515,11 @@ type ComputerSystem struct {
 
 // UnmarshalJSON unmarshals a ComputerSystem object from the raw JSON.
 func (computersystem *ComputerSystem) UnmarshalJSON(b []byte) error {
-	type CSActions struct {
+
+	//huawei json decode error, wrong ResetType data format
+	type CSActions struct { 
 		ComputerSystemReset struct {
-			AllowedResetTypes []ResetType `json:"ResetType@Redfish.AllowableValues"`
+			//AllowedResetTypes []ResetType `json:"ResetType@Redfish.AllowableValues"`
 			Target            string
 		} `json:"#ComputerSystem.Reset"`
 		SetDefaultBootOrder struct {
@@ -566,7 +568,7 @@ func (computersystem *ComputerSystem) UnmarshalJSON(b []byte) error {
 	computersystem.pcieFunctions = t.PCIeFunctions.ToStrings()
 	computersystem.chassis = t.Links.Chassis.ToStrings()
 	computersystem.resetTarget = t.Actions.ComputerSystemReset.Target
-	computersystem.SupportedResetTypes = t.Actions.ComputerSystemReset.AllowedResetTypes
+	//computersystem.SupportedResetTypes = t.Actions.ComputerSystemReset.AllowedResetTypes
 	computersystem.setDefaultBootOrderTarget = t.Actions.SetDefaultBootOrder.Target
 	computersystem.ManagedBy = t.Links.ManagedBy.ToStrings()
 
